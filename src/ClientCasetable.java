@@ -88,11 +88,12 @@ public class ClientCasetable {
 						r.clid = (Integer.parseInt(fields[0].trim()));
 						r.clcase = fields[1];
 						r.conumber = fields[2];
-						if (fields[3].trim() == "1") {
+						if (fields[3].trim().equals("true")) {
 							r.copen = true;
 						} else {
 							r.copen = false;
 						}
+						//System.out.println(r.copen);
 						recset.add(r);
 						reccnt = r.clid; 
 					}
@@ -123,12 +124,19 @@ public class ClientCasetable {
 	
 	// Get current record
 	public void view() {
+		boolean find = false;
 		for (int i = 0; i < recset.size(); i++) {
 			if (recset.get(i).clid == this.clientID) {
 				this.clientCase = recset.get(i).clcase;
 				this.contactNumber = recset.get(i).conumber;
 				this.caseOpen = recset.get(i).copen;
+				find = true;
 				break;
+			}
+			if (!find) {
+				this.clientCase = "";
+				this.contactNumber = "";
+				this.caseOpen = false;
 			}
 		}
 	}
@@ -171,9 +179,9 @@ public class ClientCasetable {
 		String S = "";
 		for (int i = 0; i < recset.size(); i++) {
 			if (b) {
-				S = String.valueOf(recset.get(i).clid) + ",";
+				S = S + String.valueOf(recset.get(i).clid) + ",";
 			} else if (recset.get(i).copen) {
-				S = String.valueOf(recset.get(i).clid) + ",";
+				S = S + String.valueOf(recset.get(i).clid) + ",";
 			}
 		}
 		return S.split(",");
@@ -186,6 +194,11 @@ public class ClientCasetable {
 			this.clientCase = recset.get(0).clcase;
 			this.contactNumber = recset.get(0).conumber;
 			this.caseOpen = recset.get(0).copen;
+		} else {
+			this.clientID = 0;
+			this.clientCase = "";
+			this.contactNumber = "";
+			this.caseOpen = false;
 		}
 	}
 	
@@ -193,7 +206,7 @@ public class ClientCasetable {
 		//ClientCasetable cc = new ClientCasetable("ClientCasetable.txt");
 		//cc.initializeDB();
 		//cc.clientID = 3;
-		//cc.view();
+		//cc.cview();
 		//System.out.println(cc.clientCase + cc.contactNumber);
 		//cc.clientCase = "Karl - Mortgage Application";
 		//cc.clear();
@@ -202,14 +215,14 @@ public class ClientCasetable {
 		cc.contactNumber = "01-2345679";
 		cc.caseOpen = false;
 		cc.insert();
-		cc.clientCase = "Sarah Jones – Debt Collection";
+		cc.clientCase = "Sarah Jones ï¿½ Debt Collection";
 		cc.contactNumber = "041-278654";
 		cc.caseOpen = true;
 		cc.insert();
-		cc.clientCase = "Kevin O’Brien – Dangerous Driving";
+		cc.clientCase = "Kevin Oï¿½Brien ï¿½ Dangerous Driving";
 		cc.contactNumber = "028-345876";
 		cc.caseOpen = true;
-		cc.insert(); */
-		//cc.closeDB(); 
+		cc.insert(); 
+		cc.closeDB(); */
 	}
 }
