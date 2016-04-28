@@ -187,6 +187,19 @@ public class ClientCasetable {
 		return S.split(",");
 	}
 	
+	// Creating list for Tasks combo. ?b == true -> output all 
+	public String[] cls(boolean b) {
+		String S = "";
+		for (int i = 0; i < recset.size(); i++) {
+			if (b) {
+				S = S + String.valueOf(recset.get(i).clcase) + ",";
+			} else if (recset.get(i).copen) {
+				S = S + String.valueOf(recset.get(i).clcase) + ",";
+			}
+		}
+		return S.split(",");
+	}
+	
 	// Show record fields in textboxes
 	public void loadToTextField() {
 		if (!recset.isEmpty()) {
