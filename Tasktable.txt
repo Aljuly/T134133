@@ -1,0 +1,7 @@
+1,01/05/16,John Smith - Mortgage Application,Another work vdfdvdfv dfdfvv dfvdfvfdv dfvdffvfdv,2.5
+2,01/05/16,John Smith - Mortgage Application,To help him with his work,1.0
+3,01/05/16,Sarah Jones - Debt Collection,Bring a lot of paper and a pencil,0.25
+4,01/05/16,Sarah Jones - Debt Collection,To help in letter writing,0.25
+5,01/05/16, Boomba Roomba ,Who is this?,2.0
+6,01/05/16, Anna Smith ,:(,0.25
+7,01/05/16, Anna Smith ,Empty record,0.0

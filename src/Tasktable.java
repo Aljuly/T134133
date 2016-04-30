@@ -3,7 +3,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 
-public class Tasctable {
+public class Tasktable {
 	protected int TaskID;
 	protected String date;
 	protected String clientCase;
@@ -51,7 +51,7 @@ public class Tasctable {
 		}
 	}
 	
-	public Tasctable(String name) {
+	public Tasktable(String name) {
 		// Connect to data file
 		currentdir = System.getProperty("user.dir");
 		try {
@@ -80,8 +80,6 @@ public class Tasctable {
 		today = new Date(); //calendar on current date
 		DATE_FORMAT = new SimpleDateFormat("dd/MM/yy");
 
-		
-	
 	}
 	
 	// Clearing data file
@@ -141,7 +139,7 @@ public class Tasctable {
 		if (Created) {
 			ClearDataFile();
 			try {
-				// Opening file for write
+				// Opening file for writing
 				DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file, false)));
 				for (int i = 0; i < recset.size(); i++) {
 					out.writeBytes(recset.get(i).toString());
@@ -174,14 +172,14 @@ public class Tasctable {
 				this.Duration = filteredrecset.get(i).dur;
 				find = true;
 				break;
-			}
-			if (!find) {
+			}	
+		}
+		if (!find) {
 				this.date = "";
 				this.clientCase = "";
 				this.Description = "";
 				this.Duration = 0;
 			}
-		}
 	}
 	
 	// Insert new record
@@ -293,6 +291,22 @@ public class Tasctable {
 			}
 		}
 		
+		// Cumulative time
+		public float totalTime() {
+			float htotal = 0f;
+			for (int i = 0; i < filteredrecset.size(); i++) {
+				htotal = htotal + filteredrecset.get(i).dur;
+			}
+			return htotal;
+		}
+		
+		// Remove all records
+		public void clearAll() {
+			recset.clear();
+			filteredrecset.clear();
+			reccnt = 0;
+			curpos = 0;
+		}
 		
 		public static void main(String[] args) {
 			

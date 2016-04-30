@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 public class ReportPrinter {
 	
 	// tasctable
-	private Tasctable tt;
+	private Tasktable tt;
 	
 	// File of data
 	private File file;
@@ -14,7 +14,7 @@ public class ReportPrinter {
 	private boolean Created;
 	
 	// The constructor 
-	public ReportPrinter(Tasctable tt) throws IOException {
+	public ReportPrinter(Tasktable tt) throws IOException {
 		this.tt = tt;
 		fileCreator("Report.txt");
 	}
@@ -69,10 +69,11 @@ public class ReportPrinter {
 			DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file, false)));
 			SimpleDateFormat format1 = new SimpleDateFormat("dd-MM-yy:HH:mm:SS");
 			out.writeBytes("Report created: " + format1.format(tt.today) + "\n" );
-			out.writeBytes(String.format("%6s%10s%32s%35s%10s%n", "TaskID", "date", "Client Case", "Description", "Duration"));
-			out.writeBytes(String.format("%6s%10s%32s%35s%10s%n", "------", "----", "-----------", "-----------", "--------"));
+			out.writeBytes("Client Case: " + tt.filteredrecset.get(0).clcase + "\n" );
+			out.writeBytes(String.format("%6s%15s%50s%10s%n", "TaskID", "date","Description", "Duration"));
+			out.writeBytes(String.format("%6s%15s%50s%10s%n", "------", "----", "-----------", "--------"));
 			for (int i = 0; i < tt.filteredrecset.size(); i++) {
-				out.writeBytes(String.format("%6s%10s%32s%35s%10.1f%n", tt.filteredrecset.get(i).tid, tt.filteredrecset.get(i).dt, tt.filteredrecset.get(i).clcase,
+				out.writeBytes(String.format("%6s%15s%50s%10.2f%n", tt.filteredrecset.get(i).tid, tt.filteredrecset.get(i).dt, 
 				tt.filteredrecset.get(i).desc,
 				tt.filteredrecset.get(i).dur));
 				htotal = htotal + tt.filteredrecset.get(i).dur;
@@ -83,5 +84,10 @@ public class ReportPrinter {
 			out.close();
 		}
 				
+	}
+	
+	// Path to file
+	public String getPath() {
+		return currentdir + "Report.txt";
 	}
 }

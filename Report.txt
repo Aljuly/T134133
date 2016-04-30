@@ -1,0 +1,9 @@
+Report created: 01-05-16:02:51:890
+Client Case: John Smith - Mortgage Application
+TaskID           date                                       Description  Duration
+------           ----                                       -----------  --------
+     1       01/05/16 Another work vdfdvdfv dfdfvv dfvdfvfdv dfvdffvfdv      2,50
+     2       01/05/16                         To help him with his work      1,00
+--------------------------------------------------------------------------------
+Total time: 3.5
+Total costs: 1.75

@@ -126,18 +126,18 @@ public class ClientCasetable {
 	public void view() {
 		boolean find = false;
 		for (int i = 0; i < recset.size(); i++) {
-			if (recset.get(i).clid == this.clientID) {
-				this.clientCase = recset.get(i).clcase;
+			if (recset.get(i).clcase.equals(this.clientCase)) {
+				this.clientID = recset.get(i).clid;
 				this.contactNumber = recset.get(i).conumber;
 				this.caseOpen = recset.get(i).copen;
 				find = true;
 				break;
 			}
-			if (!find) {
-				this.clientCase = "";
+		}
+		if (!find) {
+				this.clientID = 0;
 				this.contactNumber = "";
 				this.caseOpen = false;
-			}
 		}
 	}
 	
@@ -167,7 +167,7 @@ public class ClientCasetable {
 	// Delete current record
 	public void clear() {
 		for (int i = 0; i < recset.size(); i++) {
-			if (recset.get(i).clid == this.clientID) {
+			if (recset.get(i).clid == clientID) {
 				recset.remove(i);
 				break;
 			}
@@ -192,9 +192,9 @@ public class ClientCasetable {
 		String S = "";
 		for (int i = 0; i < recset.size(); i++) {
 			if (b) {
-				S = S + String.valueOf(recset.get(i).clcase) + ",";
+				S = S + recset.get(i).clcase + ",";
 			} else if (recset.get(i).copen) {
-				S = S + String.valueOf(recset.get(i).clcase) + ",";
+				S = S + recset.get(i).clcase + ",";
 			}
 		}
 		return S.split(",");
@@ -215,27 +215,14 @@ public class ClientCasetable {
 		}
 	}
 	
-	public static void main(String[] args) throws IOException {
-		//ClientCasetable cc = new ClientCasetable("ClientCasetable.txt");
-		//cc.initializeDB();
-		//cc.clientID = 3;
-		//cc.cview();
-		//System.out.println(cc.clientCase + cc.contactNumber);
-		//cc.clientCase = "Karl - Mortgage Application";
-		//cc.clear();
-		/*
-		cc.clientCase = "John Smith - Mortgage Application";
-		cc.contactNumber = "01-2345679";
-		cc.caseOpen = false;
-		cc.insert();
-		cc.clientCase = "Sarah Jones � Debt Collection";
-		cc.contactNumber = "041-278654";
-		cc.caseOpen = true;
-		cc.insert();
-		cc.clientCase = "Kevin O�Brien � Dangerous Driving";
-		cc.contactNumber = "028-345876";
-		cc.caseOpen = true;
-		cc.insert(); 
-		cc.closeDB(); */
+	// Remove all records
+	public void clearAll() {
+		recset.clear();
+		reccnt = 0;
+	}
+	
+	
+	public static void main(String[] args)  {
+
 	}
 }
